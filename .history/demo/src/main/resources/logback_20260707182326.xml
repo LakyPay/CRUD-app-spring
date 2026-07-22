@@ -1,0 +1,8 @@
+<configuration>
+    <appender>
+        <encoder>
+        </encoder>
+    </appender>
+    <root>
+    </root>
+</configuration>
