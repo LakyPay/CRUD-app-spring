@@ -8,65 +8,71 @@ import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.example.dao.UserDao;
 import com.example.entity.User;
+import com.example.entity.UserDto;
 import com.example.exeption.UserServiceImpl;
+import com.example.repository.UserRepository;
 
 public class UserServiceImplTest {
-    private UserDao mockedUserDao;
-    private UserServiceImpl serviceImpl;
-    private User user;
+	private UserRepository userRepository; 
+	private UserRepository mockedUserRepository; 
+	private UserServiceImpl serviceImpl; 
+	private UserDto userDto; 
+	private User user;
 
     @BeforeEach
     public void setUp() {
-        user = new User("test name", "test email", 18, LocalDateTime.now());
-        mockedUserDao = mock(UserDao.class);
-        serviceImpl = new UserServiceImpl(mockedUserDao);
+    	userDto.setName("test name"); 
+    	userDto.setEmail("test email"); 
+    	userDto.setAge(15); 
+    	userDto.setId(1); 
+    	
+    	user = userDto.toEntity(); 
+    	
+    	mockedUserRepository = mock(userRepository.getClass()); 
+    	serviceImpl = new UserServiceImpl(mockedUserRepository);
     }
 
     @Test
     public void createTest(){
-        serviceImpl.create(user);
-        verify(mockedUserDao, times(1)).create(user);
+    	serviceImpl.create(userDto); 
+    	verify(mockedUserRepository, times(1)).save(user);
     }
 
     @Test
     public void readAllTest(){
-        List<User> innerList = List.of(user);
-
-        when(mockedUserDao.readAll())
-            .thenReturn(innerList);
-        
-        List<User> resultList = serviceImpl.readAll();
-
-        assertEquals(innerList, resultList);
-        verify(mockedUserDao, times(1)).readAll();
+    	Iterable<User> innerList = List.of(user); 
+    	when(mockedUserRepository.findAll()) 
+    		.thenReturn(innerList); 
+    	Iterable<User> resultList = serviceImpl.readAll(); 
+    	assertEquals(innerList, resultList); 
+    	verify(mockedUserRepository, times(1)).findAll();
     }
 
     @Test
     public void readByIdTest(){
-        when(mockedUserDao.readById(1))
-            .thenReturn(user);
-        
-        User resultUser = serviceImpl.readById(1);
-
-        assertEquals(user, resultUser);
-        verify(mockedUserDao, times(1)).readById(1);
+    	Optional<User> timedOptional = Optional.of(user); 
+    	when(mockedUserRepository.findById(1))
+    		.thenReturn(timedOptional); 
+    	Optional<User> resultUser = serviceImpl.readById(1); 
+    	assertEquals(timedOptional, resultUser); 
+    	verify(mockedUserRepository, times(1)).findById(1);
     }
 
     @Test
     public void updateTest(){
-        serviceImpl.update(user);
-        verify(mockedUserDao, times(1)).update(user);
+    	serviceImpl.update(userDto); 
+    	verify(mockedUserRepository, times(1)).save(user);
     }
 
     @Test
     public void deleteTest(){
-        serviceImpl.delete(user);
-        verify(mockedUserDao, times(1)).delete(user);
+    	serviceImpl.delete(1); 
+    	verify(mockedUserRepository, times(1)).deleteById(1);
     }
 }

@@ -1,39 +1,41 @@
 package com.example.exeption;
 
 import java.util.List;
+import java.util.Optional;
 
-import com.example.dao.UserDao;
 import com.example.entity.User;
+import com.example.entity.UserDto;
+import com.example.repository.UserRepository;
 
 public class UserServiceImpl implements UserService{
-    private final UserDao userDao;
+	private final UserRepository userRepository;
 
-    public UserServiceImpl(UserDao userDao){
-        this.userDao = userDao;
+	public UserServiceImpl(UserRepository userRepository){ 
+		this.userRepository = userRepository; 
+	}
+
+    @Override
+    public void create(UserDto user){
+    	userRepository.save(user.toEntity());
     }
 
     @Override
-    public void create(User user){
-        userDao.create(user);
+    public Iterable<User> readAll(){
+    	return userRepository.findAll();
     }
 
     @Override
-    public List<User> readAll(){
-        return userDao.readAll();
+    public Optional<User> readById(int id){
+    	return userRepository.findById(id);
     }
 
     @Override
-    public User readById(int id){
-        return userDao.readById(id);
+    public void update(UserDto user){
+    	userRepository.save(user.toEntity());
     }
 
     @Override
-    public void update(User user){
-        userDao.update(user);
-    }
-
-    @Override
-    public void delete(User user){
-        userDao.delete(user);
+    public void delete(int id){
+    	userRepository.deleteById(id);
     }
 }
