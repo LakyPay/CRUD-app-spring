@@ -603,3 +603,55 @@ See https://java.testcontainers.org/on_failure.html for more details.
 10:54:12 INFO  com.example.dao.UserDaoImpl - Создан пользователь
 10:54:12 INFO  com.example.dao.UserDaoImpl - удалён пользователь
 10:54:12 INFO  com.example.dao.UserDaoImpl - выведен пользователь
+14:08:39 INFO  com.example.Main - Starting Main using Java 17.0.16 with PID 14112 (D:\workspace\CRUD app\demo\target\classes started by lakyp in D:\workspace\CRUD app\demo)
+14:08:39 INFO  com.example.Main - No active profile set, falling back to 1 default profile: "default"
+14:08:39 INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+14:08:39 INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 31 ms. Found 1 JPA repository interface.
+14:08:40 INFO  org.springframework.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+14:08:40 INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+14:08:40 INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+14:08:40 INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
+14:08:40 INFO  org.springframework.boot.web.context.servlet.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 814 ms
+14:08:40 INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+14:08:40 INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.3.Final
+14:08:40 INFO  org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+14:08:40 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+14:08:41 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@36638b59
+14:08:41 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+14:08:41 INFO  org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/CRUD-app]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.4
+	Default catalog/schema: CRUD-app/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+14:08:41 INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+14:08:41 INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+14:08:41 WARN  org.springframework.boot.web.server.servlet.context.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userController' defined in file [D:\workspace\CRUD app\demo\target\classes\com\example\controllers\UserController.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'com.example.exeption.UserService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+14:08:41 INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+14:08:42 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+14:08:42 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+14:08:42 INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+14:08:42 INFO  org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+14:08:42 ERROR org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.example.controllers.UserController required a bean of type 'com.example.exeption.UserService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.example.exeption.UserService' in your configuration.
+
